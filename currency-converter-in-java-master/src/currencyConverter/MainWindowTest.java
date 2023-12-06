@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainWindowTest {
 
     @org.junit.jupiter.api.Test
-    void convert() {
+    void convertNoir() {
         /*
         Test boite noire:
         Approche 1 - partition du domain:
@@ -88,5 +88,67 @@ class MainWindowTest {
         }else {
             System.out.println("No valid divise found, Border value test failed");
         }
+
+    }
+    @org.junit.jupiter.api.Test
+    void convertBlanche() {
+        /*
+        Test boite blanche:
+        currencies  = {USD, GBP, EUR, CHF, CHY, JPY}
+        currencyConverter.MainWindow.convert(String, String, ArrayList<Currency>, Double)
+
+        cas 1: currency1 not in currencies currency 2 not in currencies
+        cas 2: currency1 not in currencies currency 2 in currencies
+
+        cas 3: currency1 in currencies and currency2 not in currencies
+        cas 4: currency1 in currencies & currency2 in currencies
+         */
+
+        ArrayList<currencyConverter.Currency> currencies = currencyConverter.Currency.init();
+
+        // Print each currency in the array list
+
+        System.out.println("Test Boite Blanche currencyConverter.MainWindow.convert");
+        System.out.println("------------------------------------------------");
+        //cas 1: currency1 not in currencies currency 2 not in currencies
+        double amt = 100.00;
+
+
+        String currency1 = "Australian Dollar";
+        String currency2 = "Canadian Dollar";
+
+        String title = "cas 1: currency1 not in currencies currency 2 not in currencies";
+        MainWindowTest.this.Test2String(currency1,currency2,amt,title);
+        //cas 2: currency1 not in currencies currency 2 in currencies suppose to give the same result as cas 1
+
+        currency1 = "Australian Dollar";
+        currency2 = "Japanese Yen";
+
+        title = "cas 2: currency1 not in currencies currency 2 in currencies";
+        MainWindowTest.this.Test2String(currency1,currency2,amt,title);
+
+        //cas 3: currency1 in currencies & currency2 not in currencies
+        currency1 = "US Dollar";
+        currency2 = "Canadian Dollar";
+
+        title = "cas 3: currency1 in currencies & currency2 not in currencies";
+        MainWindowTest.this.Test2String(currency1,currency2,amt,title);
+
+        //cas 4: currency1 in currencies & currency2 in currencies
+        currency1 = "US Dollar";
+        currency2 = "Euro";
+
+        title = "cas 4: currency1 in currencies & currency2 in currencies";
+        MainWindowTest.this.Test2String(currency1,currency2,amt,title);
+
+    }
+
+    protected void Test2String(String currency1, String currency2, Double amt, String title){
+        ArrayList<currencyConverter.Currency> currencies = currencyConverter.Currency.init();
+
+        System.out.println(title);
+        System.out.println("------------------------------------------------");
+        System.out.println("currency1: " + currency1 + ", currency2: " + currency2 + ", amount: " + amt);
+        System.out.println("Result: " + MainWindow.convert(currency1, currency2, currencies, amt));
     }
 }

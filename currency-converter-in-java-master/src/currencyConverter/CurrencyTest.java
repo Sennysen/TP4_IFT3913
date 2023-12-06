@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CurrencyTest {
 
     @Test
-    void convert() {
+    void convertNoir() {
         /*
         Test boite noire:
         Approche 1 - partition du domain:
@@ -20,6 +20,7 @@ class CurrencyTest {
         Double d2 =  - Double.parseDouble(String.format("%.1f",random.nextDouble(1000000)));
         Double d3 =  Double.parseDouble(String.format("%.1f",random.nextDouble(10000000 - 1000000 + 1) + 1000000));
         Double ex_val =  Double.parseDouble(String.format("%.1f",random.nextDouble(1000000 + 1)));
+
         Double d_frontier1 = -0.1;
         Double d_frontier2 = 0.0;
         Double d_frontier3 = 1000000.0;
@@ -48,4 +49,18 @@ class CurrencyTest {
         System.out.println("Border amount: " + d_frontier4 + ", exchange value: " + ex_val);
         System.out.println("Result: " + Currency.convert(d_frontier4, ex_val));
     }
+
+    @Test
+    void convertBlanche() {
+        // currencyConverter.Currency.convert(Double, Double)
+        // un arc à tester
+        Double d1 = 102.12;
+        Double exchange_value = 1.34;
+
+        System.out.println("Test Boite blanche currencyConverter.Currency.convert(Double, Double)");
+        System.out.println("Amount: " + d1 + ", exchange value: " + exchange_value);
+        System.out.println("Result: " + Currency.convert(d1, exchange_value));
+
+    }
+
 }
