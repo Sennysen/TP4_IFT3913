@@ -2,7 +2,6 @@ package currencyConverter;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -141,7 +140,54 @@ class MainWindowTest {
         title = "cas 4: currency1 in currencies & currency2 in currencies";
         MainWindowTest.this.Test2String(currency1,currency2,amt,title);
 
+        // couverture des i chemins
+        System.out.println("------------------------------------------------");
+        System.out.println("couverture des i chemins");
+
+
+        ArrayList<currencyConverter.Currency> currencies1 = new ArrayList<currencyConverter.Currency>();
+        //on saute la boucle → Cas de test: currencies = []
+        System.out.println("on saute la boucle → Cas de test: currencies = []");
+        System.out.println("Size of currencies" + currencies1.size() +"Result: " + MainWindow.convert(currency1, currency2, currencies, amt));
+
+        currencies1.add( new currencyConverter.Currency("US Dollar", "USD") );
+        for (Currency currency : currencies) {
+            currency.defaultValues();
+        }
+        System.out.println("une itération de la boucle → Cas de test: T = [e1]");
+        System.out.println("Size of currencies" + currencies1.size() +"Result: " + MainWindow.convert(currency1, currency2, currencies, amt));
+
+        currencies1.add( new currencyConverter.Currency("Chinese Yuan Renminbi", "CNY") );
+        for (Currency currency : currencies) {
+            currency.defaultValues();
+        }
+        System.out.println("deux itérations → Cas de test: T = [e1, e2]");
+        System.out.println("Size of currencies" + currencies1.size() +"Result: " + MainWindow.convert(currency1, currency2, currencies, amt));
+
+        currencies1.add( new Currency("Euro", "EUR") );
+        currencies1.add( new Currency("British Pound", "GBP") );
+        currencies1.add( new Currency("Swiss Franc", "CHF") );
+        currencies1.add( new Currency("Japanese Yen", "JPY") );
+        for (Currency currency : currencies) {
+            currency.defaultValues();
+        }
+        System.out.println("m itérations (m < 6) → Cas de test: T = [e1 , e2 ,..em]");
+        System.out.println("Size of currencies" + currencies1.size() +"Result: " + MainWindow.convert(currency1, currency2, currencies, amt));
+
+
+        currencies1.add( new Currency("Australian Dollar", "AUD") );
+        currencies1.add( new Currency("Canadian Dollar", "CAD") );
+        currencies1.add( new Currency("Peso Mexicain", "MXN") );
+        System.out.println("7, 8 et 9 iterations → Cas de test:\n" +
+                "    T = [e1,e2,..em,.. e7]\n" +
+                "    T = [e1,e2,..em,.., e7, e8]\n" +
+                "    T = [e1,e2,..em,.., e7, e8, e9]");
+        System.out.println("Size of currencies" + currencies1.size() +"Result: " + MainWindow.convert(currency1, currency2, currencies, amt));
+
+
+
     }
+
 
     protected void Test2String(String currency1, String currency2, Double amt, String title){
         ArrayList<currencyConverter.Currency> currencies = currencyConverter.Currency.init();
