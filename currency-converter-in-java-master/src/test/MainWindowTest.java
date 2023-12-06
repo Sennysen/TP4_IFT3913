@@ -1,10 +1,10 @@
-package currencyConverter;
+package test;
 
-import java.text.DecimalFormat;
+import currencyConverter.Currency;
+import currencyConverter.MainWindow;
+
 import java.util.ArrayList;
 import java.util.Random;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MainWindowTest {
 

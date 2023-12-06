@@ -1,5 +1,6 @@
-package currencyConverter;
+package test;
 
+import currencyConverter.Currency;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
